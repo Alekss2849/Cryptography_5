@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Header from "./header/Header";
 import AppRouter from "./AppRouter";
 import Footer from "./footer/Footer";
-
+//строим шадоу дом, внедряем роутер, также хедер и футер
 const App = () => {
   return (
     <div>

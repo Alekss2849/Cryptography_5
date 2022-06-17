@@ -1,4 +1,6 @@
+//вспомагательные типы
 // config
+
 export interface Config {
   serviceName: string;
   port: number;

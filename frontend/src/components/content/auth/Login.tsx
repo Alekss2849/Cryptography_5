@@ -11,7 +11,7 @@ interface MyFormValues {
   password: string;
 }
 
-
+//валидация данных
 const validate = (values: MyFormValues) => {
   const errors: { email?: string, password?: string } = {};
   if (!values.password) {
@@ -33,7 +33,7 @@ const LoginForm = () => {
   const [type, setType] = useState('password');
   const role = useAppSelector((state) => state.user.role);
   const isReady = useAppSelector((state) => state.user.isReady);
-
+  //юзаем хук юзФормик, которая создает под капотом классовую компоненту и облегчает работу с нативным хтмл
   const formik = useFormik<MyFormValues>({
     initialValues: {
       email: '',
@@ -48,6 +48,7 @@ const LoginForm = () => {
       }
     }
   });
+  //дефольтные стили
   const loginPageStyle = {
     margin: "32px auto 37px",
     maxWidth: "50%",
@@ -71,6 +72,7 @@ const LoginForm = () => {
             value={formik.values.email}
             onChange={formik.handleChange}
           />
+          {/*если есть ошибки показываем их*/}
           {formik.errors.email ? <div className="error">{formik.errors.email}</div> : null}
         </div>
         <div className="form-group">
@@ -105,13 +107,14 @@ const LoginForm = () => {
                 "Hide"
             }
           </span>
+          {/*если есть ошибки показываем их*/}
           {formik.errors.password ? <div className="error">{formik.errors.password}</div> : null}
         </div>
         <div className="form-group form-group-inline">
           <button type="submit" className="btn btn-primary" disabled={isReady}>
             Log in
           </button>
-          <div onClick={()=>navigate("/registration")}>
+          <div onClick={() => navigate("/registration")}>
             <button className="btn btn-primary-outline">No acc? Let`s regi!</button>
           </div>
         </div>

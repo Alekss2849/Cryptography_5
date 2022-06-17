@@ -1,5 +1,6 @@
 import axios from "axios";
 
+//интерсепторы для оптимизации кода
 export const apiGet = axios.create({baseURL: "http://localhost:5000"})
 export const apiPost = axios.create({baseURL: "http://localhost:5000"})
 export const apiDelete = axios.create({baseURL: "http://localhost:5000"})

@@ -1,6 +1,7 @@
 import {DataTypes, Model, Optional} from "sequelize";
 import {sequelize} from "../config/config";
 
+//прописываем класс юзера
 export interface IUser {
   id?: number,
   email: string,
@@ -17,7 +18,7 @@ export class User extends Model<IUser, IUserInput> implements IUser {
   public password!: string;
   public role!: number;
 }
-
+//инициализируем модель
 User.init({
   id: {
     autoIncrement: true,
@@ -47,6 +48,7 @@ User.init({
   timestamps: false,
   indexes: [
     {
+      //уникальный ключ, что связывает сразу два поля имейл+роль, так чтобы на 1 имейл могло зарегаться несколько ролей под разными паролями
       name: "user_email_password_uindex",
       unique: true,
       fields: [

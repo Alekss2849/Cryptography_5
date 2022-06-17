@@ -14,6 +14,7 @@ const initialState: initialState = {
 
 const userReducer = (state = initialState, action: { type: string; payload: any; }) => {
   switch (action.type) {
+    //сетим юзера
     case ACTIONS.USER.SET_USER: {
       return {
         ...state,
@@ -22,6 +23,7 @@ const userReducer = (state = initialState, action: { type: string; payload: any;
         isReady: true
       };
     }
+    //сетим готовность данные юзера (булеан)
     case ACTIONS.USER.SET_READY_USER:
       return {
         ...state,

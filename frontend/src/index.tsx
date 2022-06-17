@@ -11,7 +11,8 @@ const store = createdStore;
 const container = document.getElementById('root')!;
 
 const root = createRoot(container);
-
+//к созданному ДОМ дереву из public/index.html мы дорисовываем ShadowDOM от Реакта
+//также в провайдер прокидываем своей внутренне хранилище приложения
 root.render(
   <Provider store={store}>
     <App/>

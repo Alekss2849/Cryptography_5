@@ -1,10 +1,10 @@
 import React from 'react';
-
+//страница которая рендерится при неправильном роуте
 function NotFound() {
   return (
     <div className={`text-center`}>
       <p>
-        Данная страница отсутствует =)
+        404 =)
       </p>
     </div>
   );

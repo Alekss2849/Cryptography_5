@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 dotenv.config({ path: '.env' });
 import { Config } from './types';
-
+//файл конфигурации проекта
 export const config: Config = {
   serviceName: process.env.SERVICENAME || 'node typescript postgres app',
   port: Number(process.env.PORT) || 5000,

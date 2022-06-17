@@ -5,8 +5,9 @@ import {sequelize} from "./database/config/config";
 import router from "./routes/router";
 import cors from 'cors';
 
+//создаем наше приложение
 const app: express.Express = express();
-
+//юзаем кросс-ориджин-ресурс-шейринг, чтоб наш бек мог принимать запросы от фронта и не отбивать их как злые
 app.use(cors({origin: true}));
 
 app.use(express.json({limit: '7mb'}));
@@ -15,12 +16,13 @@ app.use(express.static("static"));
 app.use("/", router);
 
 try {
+  //чекаем конекшин к базе данных
   sequelize.authenticate();
   console.log(`backend at ${new Date} [app.ts]:  Connection has been established successfully.`);
 } catch (error) {
   console.log(`backend at ${new Date} [app.ts]: Unable to connect to the database:`, error);
 }
-
+//поднимаем приложение на порту
 app.listen(config.port, function () {
   console.log(`backend at ${new Date} [app.ts]: server listening on port: ${config.port} and ${process.env.NODE_ENV}`
   );
