@@ -6,6 +6,7 @@ import Registration from "../components/content/auth/Registration";
 export const ACTIONS = {
   USER: {
     SET_USER: "SET_USER",
+    SET_USER_INFO: "SET_USER_INFO",
     SET_READY_USER: "SET_READY_USER",
     LOG_OUT: "LOG_OUT",
     REGISTRATION: "REGISTRATION"
