@@ -6,9 +6,37 @@ import jwtDecode from "jwt-decode";
 export const setUser = (email: string, password: string, navigate: any) => {
   return async (dispatch: any) => {
     apiPost({
-      url: '/login/',
+      url: '/auth/login',
       data: {
         email, password
+      }
+    }).then(({data}) => {
+      const {token} = data;
+      localStorage.setItem('token', token);
+      let decoded: { role: string, email: string } = jwtDecode(token);
+
+      dispatch({
+        type: ACTIONS.USER.SET_USER,
+        payload: {
+          role: decoded.role,
+          email: decoded.email,
+          token
+        }
+      });
+      navigate('/admin');
+    })
+      .catch(() =>
+        toast("Проверьте логин или пароль")
+      );
+  };
+};
+
+export const registration = (email: string, password: string, role: string, navigate: any) => {
+  return async (dispatch: any) => {
+    apiPost({
+      url: '/auth/register',
+      data: {
+        email, password, role
       }
     }).then(({data}) => {
       const {token} = data;
@@ -34,7 +62,7 @@ export const setUser = (email: string, password: string, navigate: any) => {
 export const checkToken = (navigate: any) => {
   return async (dispatch: any) => {
     apiGet({
-      url: '/login/check-token'
+      url: '/auth/check-token'
     }).then(({data}) => {
       const {token} = data;
       localStorage.setItem('token', token);
