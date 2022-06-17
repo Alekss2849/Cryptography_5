@@ -5,7 +5,7 @@ import {authMiddleware} from "../middlewares/authMiddleware";
 const authRouter = express.Router();
 
 authRouter
-  .route('/')
+  .route('/login')
   .post(authController.login);
 
 authRouter
