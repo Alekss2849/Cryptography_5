@@ -2,6 +2,7 @@ import {config} from './config';
 import express from 'express';
 
 import {sequelize} from "./database/config/config";
+import router from "./routes/router";
 import cors from 'cors';
 
 const app: express.Express = express();
@@ -11,6 +12,7 @@ app.use(cors({origin: true}));
 app.use(express.json({limit: '7mb'}));
 app.use(express.urlencoded({limit: '50mb', extended: true}));
 app.use(express.static("static"));
+app.use("/", router);
 
 try {
   sequelize.authenticate();
