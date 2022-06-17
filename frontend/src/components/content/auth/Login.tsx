@@ -5,7 +5,6 @@ import {toast} from "react-toastify";
 
 import {setUser} from "../../../store/actions/userActions";
 import {useAppDispatch, useAppSelector} from "../../../store/hooks";
-import {LinkContainer} from "react-router-bootstrap";
 
 interface MyFormValues {
   email: string;
@@ -112,9 +111,9 @@ const LoginForm = () => {
           <button type="submit" className="btn btn-primary" disabled={isReady}>
             Log in
           </button>
-          <LinkContainer to="/registration">
-            <button className="btn btn-primary-outline">Нет аккаунта? Зарегистрируйтесь!</button>
-          </LinkContainer>
+          <div onClick={()=>navigate("/registration")}>
+            <button className="btn btn-primary-outline">No acc? Let`s regi!</button>
+          </div>
         </div>
       </form>
     </div>

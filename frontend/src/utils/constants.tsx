@@ -1,4 +1,4 @@
-import Blog from "../components/content/guest/Blog";
+import Welcome from "../components/content/guest/Welcome";
 import Login from "../components/content/auth/Login";
 import AdminPanel from "../components/content/admin/AdminPanel";
 import Registration from "../components/content/auth/Registration";
@@ -21,8 +21,8 @@ export const authAdminRoutes = [
 
 export const guestRoutes = [
   {
-    path: '/blog',
-    Component: <Blog/>
+    path: '/welcome',
+    Component: <Welcome/>
   },
   {
     path: '/login',

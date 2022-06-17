@@ -26,11 +26,6 @@ const Header = () => {
       <Container>
         {(role === 'ADMIN') ?
           <Nav className="ml-auto" style={{color: 'white'}}>
-            <button onClick={() => navigate('/blog')}
-                    className="btn btn-xl"
-            >
-              Blog
-            </button>
             <button
               onClick={() => navigate('/admin')}
               className="btn btn-xl"
@@ -46,11 +41,6 @@ const Header = () => {
           </Nav>
           :
           <Nav className="ml-auto" style={{color: 'white'}}>
-            <button className="btn btn-xl"
-                    onClick={() => navigate('/blog')}
-            >
-              Blog
-            </button>
             <button className="btn btn-xl"
                     onClick={() => navigate('/login')}
             >

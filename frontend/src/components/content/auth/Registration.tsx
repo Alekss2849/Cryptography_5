@@ -1,9 +1,9 @@
 import React from 'react';
 import {useFormik} from 'formik';
 import {useNavigate} from "react-router-dom";
-import {LinkContainer} from "react-router-bootstrap";
 import {useAppDispatch} from "../../../store/hooks";
 import {registration} from "../../../store/actions/userActions";
+import {toast} from "react-toastify";
 
 interface MyFormValues {
   email: string;
@@ -46,6 +46,13 @@ const Registration = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
+  const submit = async (email: string, password: string) => {
+    try {
+      dispatch(registration(email, password, 'ADMIN', navigate));
+    } catch (e) {
+      toast("Проверьте логин или пароль");
+    }
+  };
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -105,23 +112,33 @@ const Registration = () => {
           {formik.errors.confirmPassword ?
             <div className="error">{formik.errors.confirmPassword}</div> : null}
         </div>
-
+        <div className="form-check">
+          <input type="checkbox" className="form-check-input" id="agree-check" required
+                 checked={formik.values.isAgreed}
+                 onClick={() => formik.values.isAgreed = !formik.values.isAgreed}
+                 onChange={formik.handleChange}
+          />
+          <p>Я принимаю условия&nbsp;
+            <a href="#" className="primary-link" data-toggle="modal" data-target="#show-agreement">Пользовательского
+              соглашения</a>
+          </p>
+        </div>
 
         <div className="form-group form-group-inline mt-5">
-          <button type="submit" className="btn btn-primary"
-                  disabled={!formik.values.isAgreed || formik.errors.hasOwnProperty('password') || formik.errors.hasOwnProperty('confirmPassword')}>
+          <button className="btn btn-primary" onClick={() => submit(formik.values.email, formik.values.password)}
+                  disabled={!formik.values.isAgreed || formik.errors.password !== '' || formik.errors.confirmPassword !== ''}>
             Регистрация
           </button>
-          <LinkContainer to="/login">
-            <button className="btn btn-primary-outline">Есть аккаунт? Войдите!</button>
-          </LinkContainer>
+          <div onClick={() => navigate("/login")}>
+            <button className="btn btn-primary-outline">Already have acc? Log in!</button>
+          </div>
         </div>
       </form>
       <div className="modal fade" id="show-agreement" tabIndex={-1} role="dialog"
            aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog" role="document">
-          <div className="modal-content"><p>Черным по белому - Честное предложение =) </p><p
-            style={{color: "white"}}>Рабство)</p></div>
+          <div className="modal-content"><p>Its ok, trust me.</p><p
+            style={{color: "white"}}>Hohoho, I lied)))</p></div>
         </div>
       </div>
     </div>

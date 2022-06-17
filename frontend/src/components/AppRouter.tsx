@@ -16,6 +16,7 @@ const AppRouter = () => {
     if (token) {
       dispatch(checkToken(navigate));
     }
+    navigate("/welcome");
   }, []);
 
   return (
