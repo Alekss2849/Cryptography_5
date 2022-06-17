@@ -9,6 +9,10 @@ authRouter
   .post(authController.login);
 
 authRouter
+  .route('/register')
+  .post(authController.register);
+
+authRouter
   .route('/check-token')
   .get(authMiddleware, authController.isTokenValid);
 
