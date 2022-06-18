@@ -1,10 +1,10 @@
 import axios from "axios";
 
 //интерсепторы для оптимизации кода
-export const apiGet = axios.create({baseURL: "http://localhost:5000"})
-export const apiPost = axios.create({baseURL: "http://localhost:5000"})
-export const apiDelete = axios.create({baseURL: "http://localhost:5000"})
-export const apiPut = axios.create({baseURL: "http://localhost:5000"})
+export const apiGet = axios.create({baseURL: "https://lab-5-db.herokuapp.com/"});
+export const apiPost = axios.create({baseURL: "https://lab-5-db.herokuapp.com/"});
+export const apiDelete = axios.create({baseURL: "https://lab-5-db.herokuapp.com/"});
+export const apiPut = axios.create({baseURL: "https://lab-5-db.herokuapp.com/"});
 
 apiGet.interceptors.request.use((config) => {
   config.method = "get";
